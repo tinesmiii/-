@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>{{  some_info  }}</h1>
+    <h2>{{  usd  }}</h2>
+    <h2>{{  eur  }}</h2>
+    <h1 class="login">Логин: </h1>
+    <h2 class="points">Очки: </h2>
+    <button class="but" onclick="Click()">ЖМЯК !</button>
+
+
+
+
+    <script src="{% static 'js/minigame.js' %}"></script>
+</body>
+</html>

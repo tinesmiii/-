@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+  <title>Advertisement-post</title>
+</head>
+
+<body>
+{% block content %}
+  <ul class="nav nav-pills sticky-top bg-white nav-fill">
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'main' %}">
+        <span style="font-weight: bold;">Главная</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'top-sellers' %}">
+        <span style="font-weight: bold;">Топ Экспертов</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link active" href="{% url 'advertisement-post'%}">
+        <span style="font-weight: bold;">Разместить Урок или Задание</span>
+      </a>
+    </li>
+    {%  if user.is_authenticated  %}
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'profile'%}">
+        <span style="font-weight: bold;">Профиль</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{%  url 'logout'  %}">
+        <span style="font-weight: bold;">Выйти</span>
+      </a>
+    </li>
+    {% else %}
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'login'%}">
+        <span style="font-weight: bold;">Войти</span>
+      </a>
+    </li>
+    {%  endif  %}
+  </ul>
+  <div class="row">
+    <div class="col" style="margin: 50px;">
+      <div class="display-2">
+        <span class="badge bg-primary">Разместите ваши знани или проверьте их у других</span>
+      </div>
+    </div>
+  </div>
+  
+  <div class="container">
+    <div class="row col-md-4 offset-4">
+      <ul class="nav nav-tabs bg-white">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{% url 'advertisement-post' %}">Разместить урок</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'task-post' %}">Разместить задание</a>
+        </li>
+      </ul>
+    </div>
+    <form method="post", enctype="multipart/form-data">
+      {% csrf_token %}
+      <div class="row mb-3">
+        <div class="col">
+          <div class="offset-4 w-25">
+            {{  form.as_p  }}
+          </div>
+        </div>
+      </div>
+      <div class="row mb-3 offset-sm-5">
+        <div class="col">
+          <button type="submit" class="btn btn-success">Принять</button>
+        </div>
+      </div>
+    </form>
+  </div>
+{% endblock %}  
+</body>
+</html>
